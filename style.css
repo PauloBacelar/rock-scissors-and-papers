@@ -8,3 +8,58 @@ html {
   font-family: "Roboto", sans-serif;
   text-align: center;
 }
+
+.container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+
+.game {
+  width: 75%;
+  height: 250px;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+}
+
+img {
+  margin: 0 20px 20px 0;
+  width: 64px;
+}
+
+.player {
+  margin-right: 100px;
+}
+
+.player img {
+  cursor: pointer;
+}
+
+.player img:hover,
+.chosen {
+  filter: brightness(75%);
+}
+
+@media only screen and (max-width: 592px) {
+  .game {
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    min-width: 350px;
+  }
+
+  .player {
+    margin: 20px 0px;
+  }
+
+  .title {
+    margin-bottom: 20px;
+  }
+
+  html,
+  body {
+    overflow: auto;
+  }
+}
