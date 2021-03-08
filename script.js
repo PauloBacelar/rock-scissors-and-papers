@@ -1,20 +1,24 @@
 // Functions
-function startGame() {
+function startGame(chosenImg) {
   // Player won't run game again after click an image
   gameIsrunning = true;
 
-  // Changing style of the images
+  // Change image styles
   for (let key of Object.keys(images)) {
     for (let j in images[key]) {
       // Make cursor default
       images[key][j].style.cursor = "default";
 
-      // Image won't get dark after click
+      // Not chosen images won't get dark on hover
       images[key][j].addEventListener("mouseenter", () => {
-        images[key][j].style.filter = "brightness(100%)";
+        if (images[key][j] != chosenImg) {
+          images[key][j].style.filter = "brightness(100%)";
+        }
       });
     }
   }
+
+  chosenImg.style.filter = "brightness(75%)";
 }
 
 function chose(imgID) {
@@ -36,7 +40,7 @@ playerImages.forEach((img) => {
   img.addEventListener("click", () => {
     if (!gameIsrunning) {
       chose(img.id);
-      startGame();
+      startGame(img);
     }
   });
 });
