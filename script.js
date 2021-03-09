@@ -35,16 +35,30 @@ function playerChose(imgID) {
   }
 }
 
+function machineChose(choice) {
+  // Choosing for machine
+  if (choice == "rock") {
+    machineChoiceTxt.textContent = "Machine chose rock";
+  } else if (choice == "scissors") {
+    machineChoiceTxt.textContent = "Machine chose scissors";
+  } else {
+    machineChoiceTxt.textContent = "Machine chose papers";
+  }
+}
+
 function machineChoices() {
   // Get random element from choiceOptions[] array
   let randomIndex = Math.floor(Math.random() * 3);
-  let machineChoice = choiceOptions[randomIndex];
+  machineChoice = choiceOptions[randomIndex];
+
+  // Show text of the choice
+  machineChose(machineChoice);
 
   // Darken chosen image
   machineImages[randomIndex].style.filter = "brightness(75%)";
 }
 
-// Event Listeners
+// Main function
 playerImages.forEach((img) => {
   img.addEventListener("click", () => {
     if (!gameIsrunning) {
