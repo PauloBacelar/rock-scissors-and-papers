@@ -21,3 +21,4 @@ const playerChoiceTxt = document.querySelector("h3#player-chose");
 // Game functions
 let playerChoice;
 let gameIsrunning = false;
+const choiceOptions = ["rock", "scissors", "papers"];
