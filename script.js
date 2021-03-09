@@ -11,7 +11,10 @@ function startGame(chosenImg) {
 
       // Not chosen images won't get dark on hover
       images[key][j].addEventListener("mouseenter", () => {
-        if (images[key][j] != chosenImg) {
+        if (
+          images[key][j] != chosenImg &&
+          playerImages.includes(images[key][j])
+        ) {
           images[key][j].style.filter = "brightness(100%)";
         }
       });
