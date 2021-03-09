@@ -21,7 +21,7 @@ function startGame(chosenImg) {
   chosenImg.style.filter = "brightness(75%)";
 }
 
-function chose(imgID) {
+function playerChose(imgID) {
   // Getting what the user chose
   if (imgID === "scissors-player") {
     playerChoice = "scissors";
@@ -35,12 +35,22 @@ function chose(imgID) {
   }
 }
 
+function machineChoices() {
+  // Get random element from choiceOptions[] array
+  let randomIndex = Math.floor(Math.random() * 3);
+  let machineChoice = choiceOptions[randomIndex];
+
+  // Darken chosen image
+  machineImages[randomIndex].style.filter = "brightness(75%)";
+}
+
 // Event Listeners
 playerImages.forEach((img) => {
   img.addEventListener("click", () => {
     if (!gameIsrunning) {
-      chose(img.id);
+      playerChose(img.id);
       startGame(img);
+      machineChoices();
     }
   });
 });
