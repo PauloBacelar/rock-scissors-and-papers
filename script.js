@@ -58,13 +58,60 @@ function machineChoices() {
   machineImages[randomIndex].style.filter = "brightness(75%)";
 }
 
+function checkWinner(playerChoice, machineChoice) {
+  let winner;
+
+  // Check who won
+  if (playerChoice == "rock") {
+    // Player chose rock
+    if (machineChoice == "rock") {
+      displayResult(`${playerChoice} draws with ${machineChoice}`);
+    } else if (machineChoice == "paper") {
+      winner = "machine";
+      displayResult(`${machineChoice} beats ${playerChoice}, ${winner} wins`);
+    } else {
+      winner = "player";
+      displayResult(`${playerChoice} beats ${machineChoice}, ${winner} wins`);
+    }
+  } else if (playerChoice == "scissors") {
+    // Player chose scissors
+    if (machineChoice == "scissors") {
+      displayResult(`${playerChoice} draws with ${machineChoice}`);
+    } else if (machineChoice == "rock") {
+      winner = "machine";
+      displayResult(`${machineChoice} beats ${playerChoice}, ${winner} wins`);
+    } else {
+      winner = "player";
+      displayResult(`${playerChoice} beats ${machineChoice}, ${winner} wins`);
+    }
+  } else if (playerChoice == "papers") {
+    if (machineChoice == "papers") {
+      displayResult(`${playerChoice} draws with ${machineChoice}`);
+    } else if (machineChoice == "scissors") {
+      winner = "machine";
+      displayResult(`${machineChoice} beats ${playerChoice}, ${winner} wins`);
+    } else {
+      winner = "player";
+      displayResult(`${playerChoice} beats ${machineChoice}, ${winner} wins`);
+    }
+  }
+}
+
+function displayResult(result) {
+  resultTxt.textContent = result;
+}
+
 // Main function
 playerImages.forEach((img) => {
   img.addEventListener("click", () => {
     if (!gameIsrunning) {
+      // Choices and start game
       playerChose(img.id);
       startGame(img);
       machineChoices();
+
+      // Check and display result
+      checkWinner(playerChoice, machineChoice);
     }
   });
 });
