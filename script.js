@@ -1,27 +1,7 @@
 // Functions
 function startGame(chosenImg) {
-  // Player won't run game again after click an image
   gameIsrunning = true;
-
-  // Change image styles
-  for (let key of Object.keys(images)) {
-    for (let j in images[key]) {
-      // Make cursor default
-      images[key][j].style.cursor = "default";
-
-      // Not chosen images won't get dark on hover
-      images[key][j].addEventListener("mouseenter", () => {
-        if (
-          images[key][j] != chosenImg &&
-          playerImages.includes(images[key][j])
-        ) {
-          images[key][j].style.filter = "brightness(100%)";
-        }
-      });
-    }
-  }
-
-  chosenImg.style.filter = "brightness(75%)";
+  chosenImg.classList.add("chosen-image");
 }
 
 function playerChose(imgID) {
@@ -101,6 +81,7 @@ function checkWinner(playerChoice, machineChoice) {
 }
 
 function displayResult(result) {
+  resultDiv.classList.remove("hide");
   resultTxt.textContent = result;
 }
 
@@ -108,7 +89,34 @@ function showButton() {
   playAgainButton.classList.remove("hide");
 }
 
-playAgainButton.addEventListener("click", () => {});
+playAgainButton.addEventListener("click", () => {
+  // Player will have to click an image again
+  gameIsrunning = false;
+
+  // Increase image brightness and make cursor pointer
+  for (let k of Object.keys(images)) {
+    for (let i in images[k]) {
+      images[k][i].style.cursor = "pointer";
+      images[k][i].style.filter = "brightness(100%)";
+    }
+  }
+
+  // Hide button and result
+  playAgainButton.classList.add("hide");
+  resultDiv.classList.add("hide");
+});
+
+for (let img of playerImages) {
+  img.addEventListener("mouseenter", () => {
+    img.style.filter = "brightness(75%)";
+  });
+
+  img.addEventListener("mouseout", () => {
+    if (!img.classList.contains("chosen-image")) {
+      img.style.filter = "brightness(100%)";
+    }
+  });
+}
 
 // Main function
 playerImages.forEach((img) => {
