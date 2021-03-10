@@ -26,5 +26,6 @@ let machineChoice;
 let gameIsrunning = false;
 const choiceOptions = ["rock", "scissors", "papers"];
 
-// Points
+// Points and results
 const playAgainButton = document.querySelector("button#play-again-btn");
+const resultDiv = document.querySelector("div#result-div");
