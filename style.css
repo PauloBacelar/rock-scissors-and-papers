@@ -37,8 +37,7 @@ img {
   cursor: pointer;
 }
 
-.player img:hover,
-.chosen {
+.chosen-image {
   filter: brightness(75%);
 }
 
