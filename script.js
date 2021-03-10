@@ -104,6 +104,12 @@ function displayResult(result) {
   resultTxt.textContent = result;
 }
 
+function showButton() {
+  playAgainButton.classList.remove("hide");
+}
+
+playAgainButton.addEventListener("click", () => {});
+
 // Main function
 playerImages.forEach((img) => {
   img.addEventListener("click", () => {
@@ -115,6 +121,9 @@ playerImages.forEach((img) => {
 
       // Check and display result
       checkWinner(playerChoice, machineChoice);
+
+      // Game is not running anymore
+      showButton();
     }
   });
 });
