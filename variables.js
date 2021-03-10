@@ -17,8 +17,14 @@ const images = {
 
 // Text
 const playerChoiceTxt = document.querySelector("h3#player-chose");
+const machineChoiceTxt = document.querySelector("h3#machine-chose");
+const resultTxt = document.querySelector("h3#result-txt");
 
 // Game functions
 let playerChoice;
+let machineChoice;
 let gameIsrunning = false;
 const choiceOptions = ["rock", "scissors", "papers"];
+
+// Points
+const playAgainButton = document.querySelector("button#play-again-btn");
