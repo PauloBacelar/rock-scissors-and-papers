@@ -1,7 +1,9 @@
 // Functions
 function startGame(chosenImg) {
+  // Reset variables
   gameIsrunning = true;
   chosenImg.classList.add("chosen-image");
+  winner = "";
 }
 
 function playerChose(imgID) {
@@ -42,8 +44,6 @@ function machineChoices() {
 }
 
 function checkWinner(playerChoice, machineChoice) {
-  let winner;
-
   // Check who won
   if (playerChoice == "rock") {
     // Player chose rock
@@ -81,12 +81,25 @@ function checkWinner(playerChoice, machineChoice) {
 }
 
 function displayResult(result) {
+  // Show result
   resultDiv.classList.remove("hide");
   resultTxt.textContent = result;
 }
 
 function showButton() {
+  // Show button for play again
   playAgainButton.classList.remove("hide");
+}
+
+function changePoints(winner) {
+  // Change points if there is a winner
+  if (winner === "player") {
+    playerPoints++;
+    playerPointsTxt.textContent = `You: ${playerPoints}`;
+  } else if (winner === "machine") {
+    machinePoints++;
+    machinePointsTxt.textContent = `Machine: ${machinePoints}`;
+  }
 }
 
 playAgainButton.addEventListener("click", () => {
@@ -106,18 +119,6 @@ playAgainButton.addEventListener("click", () => {
   resultDiv.classList.add("hide");
 });
 
-for (let img of playerImages) {
-  img.addEventListener("mouseenter", () => {
-    img.style.filter = "brightness(75%)";
-  });
-
-  img.addEventListener("mouseout", () => {
-    if (!img.classList.contains("chosen-image")) {
-      img.style.filter = "brightness(100%)";
-    }
-  });
-}
-
 // Main function
 playerImages.forEach((img) => {
   img.addEventListener("click", () => {
@@ -131,6 +132,7 @@ playerImages.forEach((img) => {
       checkWinner(playerChoice, machineChoice);
 
       // Game is not running anymore
+      changePoints(winner);
       showButton();
     }
   });
